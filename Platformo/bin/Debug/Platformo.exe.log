@@ -2,11 +2,11 @@
 --------------------------------------------------
 TXLib соболезнует...
 
-Программа: C:\Шлёнкин Матвей\Platformo\bin\Debug\Platformo.exe, файл: c:\codeblocks\codeblocks\mingw\include\txlib.h, строка: 13751, функция: bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF),
+Программа: C:\Шлёнкин Матвей\Platformo\Platformo\bin\Debug\Platformo.exe, файл: c:\codeblocks\codeblocks\mingw\include\txlib.h, строка: 13722, функция: bool {anonymous}::TX::txBitBlt(HDC, double, double, double, double, HDC, double, double, unsigned int),
 
 Сообщение: Параметр "sourceImage" неверен. Возможно, этот холст не создан, или уже уничтожен, или не загрузилась картинка.
 
-#1: TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400], Instance: 0x005072FC (32-bit), Flags: CMdRe0, Thread: 0x1C7C (Main), GetLastError(): 13 (Недопустимые данные). 
+#1: TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400], Instance: 0x005092FC (32-bit), Flags: CMdRe0, Thread: 0x34D4 (Main), GetLastError(): 13 (Недопустимые данные). 
 
 --------------------------------------------------
 Стек вызовов:
@@ -16,21 +16,21 @@ TXLib соболезнует...
 --------------------------------------------------
 Стек вызовов TX:
 
-# 0 in bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF) at c:\codeblocks\codeblocks\mingw\include\txlib.h:13751:
+# 0 in bool {anonymous}::TX::txBitBlt(HDC, double, double, double, double, HDC, double, double, unsigned int) at c:\codeblocks\codeblocks\mingw\include\txlib.h:13722:
 
-  13749: 
-  13750: $1  if (_TX_HDC_FAILED (destImage))   return false;
-=>13751: $   if (_TX_HDC_FAILED (sourceImage)) return false;
-  13752: 
-  13753:     // Это автоматическое определение размеров картинки (точнее, HDC источника - source) с помощью txGetExtent().
+  13720:     {
+  13721: $1  if (_TX_HDC_FAILED (destImage))   return false;
+=>13722: $   if (_TX_HDC_FAILED (sourceImage)) return false;
+  13723: 
+  13724: $   POINT size = txGetExtent (sourceImage);
 
-# 1 in void Mario::draw() at C:\Шлёнкин Матвей\AnimathiyaPersa\main.cpp:16:
+# 1 in int main() at C:\Шлёнкин Матвей\Platformo\Platformo\main.cpp:194:
 
-     14: void draw()
-     15:      {
-=>   16:      txTransparentBlt(txDC(),x,y,67,100, image,67*n_cadr,0,TX_WHITE);
-     17: 
-     18:      }
+    192:       txClear();
+    193:       txBegin();
+=>  194:       txBitBlt(txDC(),0,0,1350,700,fon);
+    195:       player1.draw();
+    196:       if (gamelevel == 7)
 
 --------------------------------------------------
 Developed with:
@@ -41,22 +41,1041 @@ Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
 See license on: http://txlib.ru
 
 TXLib file:	c:\codeblocks\codeblocks\mingw\include\txlib.h
-Compiled:	Jan 23 2025 09:52:25, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
-Started:	Jan 23 2025 09:52:47
+Compiled:	Apr 17 2025 09:35:02, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Apr 17 2025 09:35:25
 
-Run file:	C:\Шлёнкин Матвей\Platformo\bin\Debug\Platformo.exe
-Directory:	C:\Шлёнкин Матвей\Platformo
+Run file:	C:\Шлёнкин Матвей\Platformo\Platformo\bin\Debug\Platformo.exe
+Directory:	C:\Шлёнкин Матвей\Platformo\Platformo
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib сообщает:
+
+Программа: C:\Шлёнкин Матвей\Platformo\Platformo\bin\Debug\Platformo.exe, файл: c:\codeblocks\codeblocks\mingw\include\txlib.h, строка: 13772, функция: bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF),
+
+Сообщение: Прямоугольник копируемой области {50, 0, 300, 50} не полностью лежит внутри изображения-источника {0, 0, 250, 50}, функция txTransparentBlt() работать не будет.
+
+#1: TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400], Instance: 0x005092FC (32-bit), Flags: CMdRe0, Thread: 0x2E0C (Main), GetLastError(): 13 (Недопустимые данные). 
+From: c:\codeblocks\codeblocks\mingw\include\txlib.h:13771 bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF).
+
+--------------------------------------------------
+Стек вызовов:
+
+
+
+--------------------------------------------------
+Стек вызовов TX:
+
+# 0 in bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF) at c:\codeblocks\codeblocks\mingw\include\txlib.h:13771:
+
+  13769:         {
+  13770: $       SetLastError (ERROR_INVALID_DATA);
+=>13771: $       TX_ERROR ("Прямоугольник копируемой области {%g, %g, %g, %g} не полностью лежит внутри изображения-источника {%d, %d, %d, %d}, "
+  13772:                   "функция txTransparentBlt() работать не будет.", xSource, ySource, xSource + width, ySource + height, 0, 0, (int) size.x, (int) size.y);
+  13773:         }
+
+# 1 in void Vrag1::draw() at C:\Шлёнкин Матвей\Platformo\Platformo\main.cpp:69:
+
+     67: void draw()
+     68:      {
+=>   69:      txTransparentBlt(txDC(),x,y,w,h,image,50*n_cadr,0,TX_WHITE);
+     70: 
+     71:      }
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\codeblocks\codeblocks\mingw\include\txlib.h
+Compiled:	Apr 17 2025 09:49:16, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Apr 17 2025 09:49:35
+
+Run file:	C:\Шлёнкин Матвей\Platformo\Platformo\bin\Debug\Platformo.exe
+Directory:	C:\Шлёнкин Матвей\Platformo\Platformo
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib сообщает:
+
+Программа: C:\Шлёнкин Матвей\Platformo\Platformo\bin\Debug\Platformo.exe, файл: c:\codeblocks\codeblocks\mingw\include\txlib.h, строка: 13772, функция: bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF),
+
+Сообщение: Прямоугольник копируемой области {50, 0, 300, 50} не полностью лежит внутри изображения-источника {0, 0, 250, 50}, функция txTransparentBlt() работать не будет.
+
+#1: TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400], Instance: 0x005092FC (32-bit), Flags: CMdRe0, Thread: 0x32FC (Main), GetLastError(): 13 (Недопустимые данные). 
+From: c:\codeblocks\codeblocks\mingw\include\txlib.h:13771 bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF).
+
+--------------------------------------------------
+Стек вызовов:
+
+
+
+--------------------------------------------------
+Стек вызовов TX:
+
+# 0 in bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF) at c:\codeblocks\codeblocks\mingw\include\txlib.h:13771:
+
+  13769:         {
+  13770: $       SetLastError (ERROR_INVALID_DATA);
+=>13771: $       TX_ERROR ("Прямоугольник копируемой области {%g, %g, %g, %g} не полностью лежит внутри изображения-источника {%d, %d, %d, %d}, "
+  13772:                   "функция txTransparentBlt() работать не будет.", xSource, ySource, xSource + width, ySource + height, 0, 0, (int) size.x, (int) size.y);
+  13773:         }
+
+# 1 in void Vrag1::draw() at C:\Шлёнкин Матвей\Platformo\Platformo\main.cpp:69:
+
+     67: void draw()
+     68:      {
+=>   69:      txTransparentBlt(txDC(),x,y,w,h,image,50*n_cadr,0,TX_WHITE);
+     70: 
+     71:      }
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\codeblocks\codeblocks\mingw\include\txlib.h
+Compiled:	Apr 17 2025 09:53:48, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Apr 17 2025 09:54:06
+
+Run file:	C:\Шлёнкин Матвей\Platformo\Platformo\bin\Debug\Platformo.exe
+Directory:	C:\Шлёнкин Матвей\Platformo\Platformo
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib сообщает:
+
+Программа: C:\Шлёнкин Матвей\Platformo\Platformo\bin\Debug\Platformo.exe, файл: c:\codeblocks\codeblocks\mingw\include\txlib.h, строка: 13772, функция: bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF),
+
+Сообщение: Прямоугольник копируемой области {50, 0, 300, 50} не полностью лежит внутри изображения-источника {0, 0, 250, 50}, функция txTransparentBlt() работать не будет.
+
+#1: TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400], Instance: 0x005092FC (32-bit), Flags: CMdRe0, Thread: 0x2D84 (Main), GetLastError(): 13 (Недопустимые данные). 
+From: c:\codeblocks\codeblocks\mingw\include\txlib.h:13771 bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF).
+
+--------------------------------------------------
+Стек вызовов:
+
+
+
+--------------------------------------------------
+Стек вызовов TX:
+
+# 0 in bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF) at c:\codeblocks\codeblocks\mingw\include\txlib.h:13771:
+
+  13769:         {
+  13770: $       SetLastError (ERROR_INVALID_DATA);
+=>13771: $       TX_ERROR ("Прямоугольник копируемой области {%g, %g, %g, %g} не полностью лежит внутри изображения-источника {%d, %d, %d, %d}, "
+  13772:                   "функция txTransparentBlt() работать не будет.", xSource, ySource, xSource + width, ySource + height, 0, 0, (int) size.x, (int) size.y);
+  13773:         }
+
+# 1 in void Vrag1::draw() at C:\Шлёнкин Матвей\Platformo\Platformo\main.cpp:69:
+
+     67: void draw()
+     68:      {
+=>   69:      txTransparentBlt(txDC(),x,y,w,h,image,50*n_cadr,0,TX_WHITE);
+     70: 
+     71:      }
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\codeblocks\codeblocks\mingw\include\txlib.h
+Compiled:	Apr 17 2025 09:55:01, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Apr 17 2025 09:55:19
+
+Run file:	C:\Шлёнкин Матвей\Platformo\Platformo\bin\Debug\Platformo.exe
+Directory:	C:\Шлёнкин Матвей\Platformo\Platformo
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib сообщает:
+
+Программа: C:\Шлёнкин Матвей\Platformo\Platformo\bin\Debug\Platformo.exe, файл: c:\codeblocks\codeblocks\mingw\include\txlib.h, строка: 13772, функция: bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF),
+
+Сообщение: Прямоугольник копируемой области {50, 0, 300, 50} не полностью лежит внутри изображения-источника {0, 0, 250, 50}, функция txTransparentBlt() работать не будет.
+
+#1: TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400], Instance: 0x005092FC (32-bit), Flags: CMdRe0, Thread: 0x34E4 (Main), GetLastError(): 13 (Недопустимые данные). 
+From: c:\codeblocks\codeblocks\mingw\include\txlib.h:13771 bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF).
+
+--------------------------------------------------
+Стек вызовов:
+
+
+
+--------------------------------------------------
+Стек вызовов TX:
+
+# 0 in bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF) at c:\codeblocks\codeblocks\mingw\include\txlib.h:13771:
+
+  13769:         {
+  13770: $       SetLastError (ERROR_INVALID_DATA);
+=>13771: $       TX_ERROR ("Прямоугольник копируемой области {%g, %g, %g, %g} не полностью лежит внутри изображения-источника {%d, %d, %d, %d}, "
+  13772:                   "функция txTransparentBlt() работать не будет.", xSource, ySource, xSource + width, ySource + height, 0, 0, (int) size.x, (int) size.y);
+  13773:         }
+
+# 1 in void Vrag1::draw() at C:\Шлёнкин Матвей\Platformo\Platformo\main.cpp:69:
+
+     67: void draw()
+     68:      {
+=>   69:      txTransparentBlt(txDC(),x,y,w,h,image,50*n_cadr,0,TX_WHITE);
+     70: 
+     71:      }
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\codeblocks\codeblocks\mingw\include\txlib.h
+Compiled:	Apr 17 2025 10:01:26, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Apr 17 2025 10:01:47
+
+Run file:	C:\Шлёнкин Матвей\Platformo\Platformo\bin\Debug\Platformo.exe
+Directory:	C:\Шлёнкин Матвей\Platformo\Platformo
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib сообщает:
+
+Программа: C:\Шлёнкин Матвей\Platformo\Platformo\bin\Debug\Platformo.exe, файл: c:\codeblocks\codeblocks\mingw\include\txlib.h, строка: 13772, функция: bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF),
+
+Сообщение: Прямоугольник копируемой области {100, 0, 350, 50} не полностью лежит внутри изображения-источника {0, 0, 250, 50}, функция txTransparentBlt() работать не будет.
+
+#2: TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400], Instance: 0x005092FC (32-bit), Flags: CMdRe0, Thread: 0x34E4 (Main), GetLastError(): 13 (Недопустимые данные). 
+From: c:\codeblocks\codeblocks\mingw\include\txlib.h:13771 bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF).
+
+--------------------------------------------------
+Стек вызовов:
+
+
+
+--------------------------------------------------
+Стек вызовов TX:
+
+# 0 in bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF) at c:\codeblocks\codeblocks\mingw\include\txlib.h:13771:
+
+  13769:         {
+  13770: $       SetLastError (ERROR_INVALID_DATA);
+=>13771: $       TX_ERROR ("Прямоугольник копируемой области {%g, %g, %g, %g} не полностью лежит внутри изображения-источника {%d, %d, %d, %d}, "
+  13772:                   "функция txTransparentBlt() работать не будет.", xSource, ySource, xSource + width, ySource + height, 0, 0, (int) size.x, (int) size.y);
+  13773:         }
+
+# 1 in void Vrag1::draw() at C:\Шлёнкин Матвей\Platformo\Platformo\main.cpp:69:
+
+     67: void draw()
+     68:      {
+=>   69:      txTransparentBlt(txDC(),x,y,w,h,image,50*n_cadr,0,TX_WHITE);
+     70: 
+     71:      }
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\codeblocks\codeblocks\mingw\include\txlib.h
+Compiled:	Apr 17 2025 10:01:26, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Apr 17 2025 10:01:48
+
+Run file:	C:\Шлёнкин Матвей\Platformo\Platformo\bin\Debug\Platformo.exe
+Directory:	C:\Шлёнкин Матвей\Platformo\Platformo
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib сообщает:
+
+Программа: C:\Шлёнкин Матвей\Platformo\Platformo\bin\Debug\Platformo.exe, файл: c:\codeblocks\codeblocks\mingw\include\txlib.h, строка: 13772, функция: bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF),
+
+Сообщение: Прямоугольник копируемой области {150, 0, 300, 50} не полностью лежит внутри изображения-источника {0, 0, 250, 50}, функция txTransparentBlt() работать не будет.
+
+#1: TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400], Instance: 0x005092FC (32-bit), Flags: CMdRe0, Thread: 0x195C (Main), GetLastError(): 13 (Недопустимые данные). 
+From: c:\codeblocks\codeblocks\mingw\include\txlib.h:13771 bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF).
+
+--------------------------------------------------
+Стек вызовов:
+
+
+
+--------------------------------------------------
+Стек вызовов TX:
+
+# 0 in bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF) at c:\codeblocks\codeblocks\mingw\include\txlib.h:13771:
+
+  13769:         {
+  13770: $       SetLastError (ERROR_INVALID_DATA);
+=>13771: $       TX_ERROR ("Прямоугольник копируемой области {%g, %g, %g, %g} не полностью лежит внутри изображения-источника {%d, %d, %d, %d}, "
+  13772:                   "функция txTransparentBlt() работать не будет.", xSource, ySource, xSource + width, ySource + height, 0, 0, (int) size.x, (int) size.y);
+  13773:         }
+
+# 1 in void Vrag1::draw() at C:\Шлёнкин Матвей\Platformo\Platformo\main.cpp:69:
+
+     67: void draw()
+     68:      {
+=>   69:      txTransparentBlt(txDC(),x,y,w,h,image,50*n_cadr,0,TX_WHITE);
+     70: 
+     71:      }
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\codeblocks\codeblocks\mingw\include\txlib.h
+Compiled:	Apr 17 2025 10:04:02, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Apr 17 2025 10:04:34
+
+Run file:	C:\Шлёнкин Матвей\Platformo\Platformo\bin\Debug\Platformo.exe
+Directory:	C:\Шлёнкин Матвей\Platformo\Platformo
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib сообщает:
+
+Программа: C:\Шлёнкин Матвей\Platformo\Platformo\bin\Debug\Platformo.exe, файл: c:\codeblocks\codeblocks\mingw\include\txlib.h, строка: 13772, функция: bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF),
+
+Сообщение: Прямоугольник копируемой области {200, 0, 350, 50} не полностью лежит внутри изображения-источника {0, 0, 250, 50}, функция txTransparentBlt() работать не будет.
+
+#2: TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400], Instance: 0x005092FC (32-bit), Flags: CMdRe0, Thread: 0x195C (Main), GetLastError(): 13 (Недопустимые данные). 
+From: c:\codeblocks\codeblocks\mingw\include\txlib.h:13771 bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF).
+
+--------------------------------------------------
+Стек вызовов:
+
+
+
+--------------------------------------------------
+Стек вызовов TX:
+
+# 0 in bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF) at c:\codeblocks\codeblocks\mingw\include\txlib.h:13771:
+
+  13769:         {
+  13770: $       SetLastError (ERROR_INVALID_DATA);
+=>13771: $       TX_ERROR ("Прямоугольник копируемой области {%g, %g, %g, %g} не полностью лежит внутри изображения-источника {%d, %d, %d, %d}, "
+  13772:                   "функция txTransparentBlt() работать не будет.", xSource, ySource, xSource + width, ySource + height, 0, 0, (int) size.x, (int) size.y);
+  13773:         }
+
+# 1 in void Vrag1::draw() at C:\Шлёнкин Матвей\Platformo\Platformo\main.cpp:69:
+
+     67: void draw()
+     68:      {
+=>   69:      txTransparentBlt(txDC(),x,y,w,h,image,50*n_cadr,0,TX_WHITE);
+     70: 
+     71:      }
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\codeblocks\codeblocks\mingw\include\txlib.h
+Compiled:	Apr 17 2025 10:04:02, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Apr 17 2025 10:04:34
+
+Run file:	C:\Шлёнкин Матвей\Platformo\Platformo\bin\Debug\Platformo.exe
+Directory:	C:\Шлёнкин Матвей\Platformo\Platformo
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib сообщает:
+
+Программа: C:\Шлёнкин Матвей\Platformo\Platformo\bin\Debug\Platformo.exe, файл: c:\codeblocks\codeblocks\mingw\include\txlib.h, строка: 13772, функция: bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF),
+
+Сообщение: Прямоугольник копируемой области {50, 0, 300, 50} не полностью лежит внутри изображения-источника {0, 0, 250, 50}, функция txTransparentBlt() работать не будет.
+
+#1: TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400], Instance: 0x005092FC (32-bit), Flags: CMdRe0, Thread: 0x28D4 (Main), GetLastError(): 13 (Недопустимые данные). 
+From: c:\codeblocks\codeblocks\mingw\include\txlib.h:13771 bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF).
+
+--------------------------------------------------
+Стек вызовов:
+
+
+
+--------------------------------------------------
+Стек вызовов TX:
+
+# 0 in bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF) at c:\codeblocks\codeblocks\mingw\include\txlib.h:13771:
+
+  13769:         {
+  13770: $       SetLastError (ERROR_INVALID_DATA);
+=>13771: $       TX_ERROR ("Прямоугольник копируемой области {%g, %g, %g, %g} не полностью лежит внутри изображения-источника {%d, %d, %d, %d}, "
+  13772:                   "функция txTransparentBlt() работать не будет.", xSource, ySource, xSource + width, ySource + height, 0, 0, (int) size.x, (int) size.y);
+  13773:         }
+
+# 1 in void Vrag1::draw() at C:\Шлёнкин Матвей\Platformo\Platformo\main.cpp:69:
+
+     67: void draw()
+     68:      {
+=>   69:      txTransparentBlt(txDC(),x,y,w,h,image,50*n_cadr,0,TX_WHITE);
+     70: 
+     71:      }
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\codeblocks\codeblocks\mingw\include\txlib.h
+Compiled:	Apr 17 2025 10:06:17, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Apr 17 2025 10:06:37
+
+Run file:	C:\Шлёнкин Матвей\Platformo\Platformo\bin\Debug\Platformo.exe
+Directory:	C:\Шлёнкин Матвей\Platformo\Platformo
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib сообщает:
+
+Программа: C:\Шлёнкин Матвей\Platformo\Platformo\bin\Debug\Platformo.exe, файл: c:\codeblocks\codeblocks\mingw\include\txlib.h, строка: 13772, функция: bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF),
+
+Сообщение: Прямоугольник копируемой области {50, 0, 300, 50} не полностью лежит внутри изображения-источника {0, 0, 250, 50}, функция txTransparentBlt() работать не будет.
+
+#1: TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400], Instance: 0x005092FC (32-bit), Flags: CMdRe0, Thread: 0x1EE4 (Main), GetLastError(): 13 (Недопустимые данные). 
+From: c:\codeblocks\codeblocks\mingw\include\txlib.h:13771 bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF).
+
+--------------------------------------------------
+Стек вызовов:
+
+
+
+--------------------------------------------------
+Стек вызовов TX:
+
+# 0 in bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF) at c:\codeblocks\codeblocks\mingw\include\txlib.h:13771:
+
+  13769:         {
+  13770: $       SetLastError (ERROR_INVALID_DATA);
+=>13771: $       TX_ERROR ("Прямоугольник копируемой области {%g, %g, %g, %g} не полностью лежит внутри изображения-источника {%d, %d, %d, %d}, "
+  13772:                   "функция txTransparentBlt() работать не будет.", xSource, ySource, xSource + width, ySource + height, 0, 0, (int) size.x, (int) size.y);
+  13773:         }
+
+# 1 in void Vrag1::draw() at C:\Шлёнкин Матвей\Platformo\Platformo\main.cpp:69:
+
+     67: void draw()
+     68:      {
+=>   69:      txTransparentBlt(txDC(),x,y,250,50,image,50*n_cadr,0,TX_WHITE);
+     70: 
+     71:      }
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\codeblocks\codeblocks\mingw\include\txlib.h
+Compiled:	Apr 17 2025 10:08:39, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Apr 17 2025 10:09:00
+
+Run file:	C:\Шлёнкин Матвей\Platformo\Platformo\bin\Debug\Platformo.exe
+Directory:	C:\Шлёнкин Матвей\Platformo\Platformo
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib сообщает:
+
+Программа: C:\Шлёнкин Матвей\Platformo\Platformo\bin\Debug\Platformo.exe, файл: c:\codeblocks\codeblocks\mingw\include\txlib.h, строка: 13772, функция: bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF),
+
+Сообщение: Прямоугольник копируемой области {50, 0, 300, 50} не полностью лежит внутри изображения-источника {0, 0, 250, 50}, функция txTransparentBlt() работать не будет.
+
+#1: TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400], Instance: 0x005092FC (32-bit), Flags: CMdRe0, Thread: 0x2D7C (Main), GetLastError(): 13 (Недопустимые данные). 
+From: c:\codeblocks\codeblocks\mingw\include\txlib.h:13771 bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF).
+
+--------------------------------------------------
+Стек вызовов:
+
+
+
+--------------------------------------------------
+Стек вызовов TX:
+
+# 0 in bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF) at c:\codeblocks\codeblocks\mingw\include\txlib.h:13771:
+
+  13769:         {
+  13770: $       SetLastError (ERROR_INVALID_DATA);
+=>13771: $       TX_ERROR ("Прямоугольник копируемой области {%g, %g, %g, %g} не полностью лежит внутри изображения-источника {%d, %d, %d, %d}, "
+  13772:                   "функция txTransparentBlt() работать не будет.", xSource, ySource, xSource + width, ySource + height, 0, 0, (int) size.x, (int) size.y);
+  13773:         }
+
+# 1 in void Vrag1::draw() at C:\Шлёнкин Матвей\Platformo\Platformo\main.cpp:69:
+
+     67: void draw()
+     68:      {
+=>   69:      txTransparentBlt(txDC(),x,y,w,h,image,50*n_cadr,0,TX_WHITE);
+     70: 
+     71:      }
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\codeblocks\codeblocks\mingw\include\txlib.h
+Compiled:	Apr 17 2025 10:11:21, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Apr 17 2025 10:11:49
+
+Run file:	C:\Шлёнкин Матвей\Platformo\Platformo\bin\Debug\Platformo.exe
+Directory:	C:\Шлёнкин Матвей\Platformo\Platformo
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib сообщает:
+
+Программа: C:\Шлёнкин Матвей\Platformo\Platformo\bin\Debug\Platformo.exe, файл: c:\codeblocks\codeblocks\mingw\include\txlib.h, строка: 13772, функция: bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF),
+
+Сообщение: Прямоугольник копируемой области {100, 0, 350, 50} не полностью лежит внутри изображения-источника {0, 0, 250, 50}, функция txTransparentBlt() работать не будет.
+
+#2: TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400], Instance: 0x005092FC (32-bit), Flags: CMdRe0, Thread: 0x2D7C (Main), GetLastError(): 13 (Недопустимые данные). 
+From: c:\codeblocks\codeblocks\mingw\include\txlib.h:13771 bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF).
+
+--------------------------------------------------
+Стек вызовов:
+
+
+
+--------------------------------------------------
+Стек вызовов TX:
+
+# 0 in bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF) at c:\codeblocks\codeblocks\mingw\include\txlib.h:13771:
+
+  13769:         {
+  13770: $       SetLastError (ERROR_INVALID_DATA);
+=>13771: $       TX_ERROR ("Прямоугольник копируемой области {%g, %g, %g, %g} не полностью лежит внутри изображения-источника {%d, %d, %d, %d}, "
+  13772:                   "функция txTransparentBlt() работать не будет.", xSource, ySource, xSource + width, ySource + height, 0, 0, (int) size.x, (int) size.y);
+  13773:         }
+
+# 1 in void Vrag1::draw() at C:\Шлёнкин Матвей\Platformo\Platformo\main.cpp:69:
+
+     67: void draw()
+     68:      {
+=>   69:      txTransparentBlt(txDC(),x,y,w,h,image,50*n_cadr,0,TX_WHITE);
+     70: 
+     71:      }
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\codeblocks\codeblocks\mingw\include\txlib.h
+Compiled:	Apr 17 2025 10:11:21, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Apr 17 2025 10:11:49
+
+Run file:	C:\Шлёнкин Матвей\Platformo\Platformo\bin\Debug\Platformo.exe
+Directory:	C:\Шлёнкин Матвей\Platformo\Platformo
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib сообщает:
+
+Программа: C:\Шлёнкин Матвей\Platformo\Platformo\bin\Debug\Platformo.exe, файл: c:\codeblocks\codeblocks\mingw\include\txlib.h, строка: 13772, функция: bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF),
+
+Сообщение: Прямоугольник копируемой области {150, 0, 400, 50} не полностью лежит внутри изображения-источника {0, 0, 250, 50}, функция txTransparentBlt() работать не будет.
+
+#3: TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400], Instance: 0x005092FC (32-bit), Flags: CMdRe0, Thread: 0x2D7C (Main), GetLastError(): 13 (Недопустимые данные). 
+From: c:\codeblocks\codeblocks\mingw\include\txlib.h:13771 bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF).
+
+--------------------------------------------------
+Стек вызовов:
+
+
+
+--------------------------------------------------
+Стек вызовов TX:
+
+# 0 in bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF) at c:\codeblocks\codeblocks\mingw\include\txlib.h:13771:
+
+  13769:         {
+  13770: $       SetLastError (ERROR_INVALID_DATA);
+=>13771: $       TX_ERROR ("Прямоугольник копируемой области {%g, %g, %g, %g} не полностью лежит внутри изображения-источника {%d, %d, %d, %d}, "
+  13772:                   "функция txTransparentBlt() работать не будет.", xSource, ySource, xSource + width, ySource + height, 0, 0, (int) size.x, (int) size.y);
+  13773:         }
+
+# 1 in void Vrag1::draw() at C:\Шлёнкин Матвей\Platformo\Platformo\main.cpp:69:
+
+     67: void draw()
+     68:      {
+=>   69:      txTransparentBlt(txDC(),x,y,w,h,image,50*n_cadr,0,TX_WHITE);
+     70: 
+     71:      }
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\codeblocks\codeblocks\mingw\include\txlib.h
+Compiled:	Apr 17 2025 10:11:21, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Apr 17 2025 10:11:49
+
+Run file:	C:\Шлёнкин Матвей\Platformo\Platformo\bin\Debug\Platformo.exe
+Directory:	C:\Шлёнкин Матвей\Platformo\Platformo
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib сообщает:
+
+Программа: C:\Шлёнкин Матвей\Platformo\Platformo\bin\Debug\Platformo.exe, файл: c:\codeblocks\codeblocks\mingw\include\txlib.h, строка: 13772, функция: bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF),
+
+Сообщение: Прямоугольник копируемой области {200, 0, 450, 50} не полностью лежит внутри изображения-источника {0, 0, 250, 50}, функция txTransparentBlt() работать не будет.
+
+#4: TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400], Instance: 0x005092FC (32-bit), Flags: CMdRe0, Thread: 0x2D7C (Main), GetLastError(): 13 (Недопустимые данные). 
+From: c:\codeblocks\codeblocks\mingw\include\txlib.h:13771 bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF).
+
+--------------------------------------------------
+Стек вызовов:
+
+
+
+--------------------------------------------------
+Стек вызовов TX:
+
+# 0 in bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF) at c:\codeblocks\codeblocks\mingw\include\txlib.h:13771:
+
+  13769:         {
+  13770: $       SetLastError (ERROR_INVALID_DATA);
+=>13771: $       TX_ERROR ("Прямоугольник копируемой области {%g, %g, %g, %g} не полностью лежит внутри изображения-источника {%d, %d, %d, %d}, "
+  13772:                   "функция txTransparentBlt() работать не будет.", xSource, ySource, xSource + width, ySource + height, 0, 0, (int) size.x, (int) size.y);
+  13773:         }
+
+# 1 in void Vrag1::draw() at C:\Шлёнкин Матвей\Platformo\Platformo\main.cpp:69:
+
+     67: void draw()
+     68:      {
+=>   69:      txTransparentBlt(txDC(),x,y,w,h,image,50*n_cadr,0,TX_WHITE);
+     70: 
+     71:      }
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\codeblocks\codeblocks\mingw\include\txlib.h
+Compiled:	Apr 17 2025 10:11:21, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Apr 17 2025 10:11:49
+
+Run file:	C:\Шлёнкин Матвей\Platformo\Platformo\bin\Debug\Platformo.exe
+Directory:	C:\Шлёнкин Матвей\Platformo\Platformo
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib сообщает:
+
+Программа: C:\Шлёнкин Матвей\Platformo\Platformo\bin\Debug\Platformo.exe, файл: c:\codeblocks\codeblocks\mingw\include\txlib.h, строка: 13772, функция: bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF),
+
+Сообщение: Прямоугольник копируемой области {50, 0, 300, 50} не полностью лежит внутри изображения-источника {0, 0, 250, 50}, функция txTransparentBlt() работать не будет.
+
+#5: TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400], Instance: 0x005092FC (32-bit), Flags: CMdRe0, Thread: 0x2D7C (Main), GetLastError(): 13 (Недопустимые данные). 
+From: c:\codeblocks\codeblocks\mingw\include\txlib.h:13771 bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF).
+
+--------------------------------------------------
+Стек вызовов:
+
+
+
+--------------------------------------------------
+Стек вызовов TX:
+
+# 0 in bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF) at c:\codeblocks\codeblocks\mingw\include\txlib.h:13771:
+
+  13769:         {
+  13770: $       SetLastError (ERROR_INVALID_DATA);
+=>13771: $       TX_ERROR ("Прямоугольник копируемой области {%g, %g, %g, %g} не полностью лежит внутри изображения-источника {%d, %d, %d, %d}, "
+  13772:                   "функция txTransparentBlt() работать не будет.", xSource, ySource, xSource + width, ySource + height, 0, 0, (int) size.x, (int) size.y);
+  13773:         }
+
+# 1 in void Vrag1::draw() at C:\Шлёнкин Матвей\Platformo\Platformo\main.cpp:69:
+
+     67: void draw()
+     68:      {
+=>   69:      txTransparentBlt(txDC(),x,y,w,h,image,50*n_cadr,0,TX_WHITE);
+     70: 
+     71:      }
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\codeblocks\codeblocks\mingw\include\txlib.h
+Compiled:	Apr 17 2025 10:11:21, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Apr 17 2025 10:11:49
+
+Run file:	C:\Шлёнкин Матвей\Platformo\Platformo\bin\Debug\Platformo.exe
+Directory:	C:\Шлёнкин Матвей\Platformo\Platformo
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib сообщает:
+
+Программа: C:\Шлёнкин Матвей\Platformo\Platformo\bin\Debug\Platformo.exe, файл: c:\codeblocks\codeblocks\mingw\include\txlib.h, строка: 13772, функция: bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF),
+
+Сообщение: Прямоугольник копируемой области {100, 0, 350, 50} не полностью лежит внутри изображения-источника {0, 0, 250, 50}, функция txTransparentBlt() работать не будет.
+
+#6: TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400], Instance: 0x005092FC (32-bit), Flags: CMdRe0, Thread: 0x2D7C (Main), GetLastError(): 13 (Недопустимые данные). 
+From: c:\codeblocks\codeblocks\mingw\include\txlib.h:13771 bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF).
+
+--------------------------------------------------
+Стек вызовов:
+
+
+
+--------------------------------------------------
+Стек вызовов TX:
+
+# 0 in bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF) at c:\codeblocks\codeblocks\mingw\include\txlib.h:13771:
+
+  13769:         {
+  13770: $       SetLastError (ERROR_INVALID_DATA);
+=>13771: $       TX_ERROR ("Прямоугольник копируемой области {%g, %g, %g, %g} не полностью лежит внутри изображения-источника {%d, %d, %d, %d}, "
+  13772:                   "функция txTransparentBlt() работать не будет.", xSource, ySource, xSource + width, ySource + height, 0, 0, (int) size.x, (int) size.y);
+  13773:         }
+
+# 1 in void Vrag1::draw() at C:\Шлёнкин Матвей\Platformo\Platformo\main.cpp:69:
+
+     67: void draw()
+     68:      {
+=>   69:      txTransparentBlt(txDC(),x,y,w,h,image,50*n_cadr,0,TX_WHITE);
+     70: 
+     71:      }
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\codeblocks\codeblocks\mingw\include\txlib.h
+Compiled:	Apr 17 2025 10:11:21, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Apr 17 2025 10:11:49
+
+Run file:	C:\Шлёнкин Матвей\Platformo\Platformo\bin\Debug\Platformo.exe
+Directory:	C:\Шлёнкин Матвей\Platformo\Platformo
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib сообщает:
+
+Программа: C:\Шлёнкин Матвей\Platformo\Platformo\bin\Debug\Platformo.exe, файл: c:\codeblocks\codeblocks\mingw\include\txlib.h, строка: 13772, функция: bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF),
+
+Сообщение: Прямоугольник копируемой области {150, 0, 400, 50} не полностью лежит внутри изображения-источника {0, 0, 250, 50}, функция txTransparentBlt() работать не будет.
+
+#7: TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400], Instance: 0x005092FC (32-bit), Flags: CMdRe0, Thread: 0x2D7C (Main), GetLastError(): 13 (Недопустимые данные). 
+From: c:\codeblocks\codeblocks\mingw\include\txlib.h:13771 bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF).
+
+--------------------------------------------------
+Стек вызовов:
+
+
+
+--------------------------------------------------
+Стек вызовов TX:
+
+# 0 in bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF) at c:\codeblocks\codeblocks\mingw\include\txlib.h:13771:
+
+  13769:         {
+  13770: $       SetLastError (ERROR_INVALID_DATA);
+=>13771: $       TX_ERROR ("Прямоугольник копируемой области {%g, %g, %g, %g} не полностью лежит внутри изображения-источника {%d, %d, %d, %d}, "
+  13772:                   "функция txTransparentBlt() работать не будет.", xSource, ySource, xSource + width, ySource + height, 0, 0, (int) size.x, (int) size.y);
+  13773:         }
+
+# 1 in void Vrag1::draw() at C:\Шлёнкин Матвей\Platformo\Platformo\main.cpp:69:
+
+     67: void draw()
+     68:      {
+=>   69:      txTransparentBlt(txDC(),x,y,w,h,image,50*n_cadr,0,TX_WHITE);
+     70: 
+     71:      }
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\codeblocks\codeblocks\mingw\include\txlib.h
+Compiled:	Apr 17 2025 10:11:21, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Apr 17 2025 10:11:49
+
+Run file:	C:\Шлёнкин Матвей\Platformo\Platformo\bin\Debug\Platformo.exe
+Directory:	C:\Шлёнкин Матвей\Platformo\Platformo
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib сообщает:
+
+Программа: C:\Шлёнкин Матвей\Platformo\Platformo\bin\Debug\Platformo.exe, файл: c:\codeblocks\codeblocks\mingw\include\txlib.h, строка: 13772, функция: bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF),
+
+Сообщение: Прямоугольник копируемой области {200, 0, 450, 50} не полностью лежит внутри изображения-источника {0, 0, 250, 50}, функция txTransparentBlt() работать не будет.
+
+#8: TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400], Instance: 0x005092FC (32-bit), Flags: CMdRe0, Thread: 0x2D7C (Main), GetLastError(): 13 (Недопустимые данные). 
+From: c:\codeblocks\codeblocks\mingw\include\txlib.h:13771 bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF).
+
+--------------------------------------------------
+Стек вызовов:
+
+
+
+--------------------------------------------------
+Стек вызовов TX:
+
+# 0 in bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF) at c:\codeblocks\codeblocks\mingw\include\txlib.h:13771:
+
+  13769:         {
+  13770: $       SetLastError (ERROR_INVALID_DATA);
+=>13771: $       TX_ERROR ("Прямоугольник копируемой области {%g, %g, %g, %g} не полностью лежит внутри изображения-источника {%d, %d, %d, %d}, "
+  13772:                   "функция txTransparentBlt() работать не будет.", xSource, ySource, xSource + width, ySource + height, 0, 0, (int) size.x, (int) size.y);
+  13773:         }
+
+# 1 in void Vrag1::draw() at C:\Шлёнкин Матвей\Platformo\Platformo\main.cpp:69:
+
+     67: void draw()
+     68:      {
+=>   69:      txTransparentBlt(txDC(),x,y,w,h,image,50*n_cadr,0,TX_WHITE);
+     70: 
+     71:      }
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\codeblocks\codeblocks\mingw\include\txlib.h
+Compiled:	Apr 17 2025 10:11:21, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Apr 17 2025 10:11:50
+
+Run file:	C:\Шлёнкин Матвей\Platformo\Platformo\bin\Debug\Platformo.exe
+Directory:	C:\Шлёнкин Матвей\Platformo\Platformo
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib сообщает:
+
+Программа: C:\Шлёнкин Матвей\Platformo\Platformo\bin\Debug\Platformo.exe, файл: c:\codeblocks\codeblocks\mingw\include\txlib.h, строка: 13772, функция: bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF),
+
+Сообщение: Прямоугольник копируемой области {50, 0, 300, 50} не полностью лежит внутри изображения-источника {0, 0, 250, 50}, функция txTransparentBlt() работать не будет.
+
+#9: TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400], Instance: 0x005092FC (32-bit), Flags: CMdRe0, Thread: 0x2D7C (Main), GetLastError(): 13 (Недопустимые данные). 
+From: c:\codeblocks\codeblocks\mingw\include\txlib.h:13771 bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF).
+
+--------------------------------------------------
+Стек вызовов:
+
+
+
+--------------------------------------------------
+Стек вызовов TX:
+
+# 0 in bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF) at c:\codeblocks\codeblocks\mingw\include\txlib.h:13771:
+
+  13769:         {
+  13770: $       SetLastError (ERROR_INVALID_DATA);
+=>13771: $       TX_ERROR ("Прямоугольник копируемой области {%g, %g, %g, %g} не полностью лежит внутри изображения-источника {%d, %d, %d, %d}, "
+  13772:                   "функция txTransparentBlt() работать не будет.", xSource, ySource, xSource + width, ySource + height, 0, 0, (int) size.x, (int) size.y);
+  13773:         }
+
+# 1 in void Vrag1::draw() at C:\Шлёнкин Матвей\Platformo\Platformo\main.cpp:69:
+
+     67: void draw()
+     68:      {
+=>   69:      txTransparentBlt(txDC(),x,y,w,h,image,50*n_cadr,0,TX_WHITE);
+     70: 
+     71:      }
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\codeblocks\codeblocks\mingw\include\txlib.h
+Compiled:	Apr 17 2025 10:11:21, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Apr 17 2025 10:11:49
+
+Run file:	C:\Шлёнкин Матвей\Platformo\Platformo\bin\Debug\Platformo.exe
+Directory:	C:\Шлёнкин Матвей\Platformo\Platformo
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib сообщает:
+
+Программа: C:\Шлёнкин Матвей\Platformo\Platformo\bin\Debug\Platformo.exe, файл: c:\codeblocks\codeblocks\mingw\include\txlib.h, строка: 13772, функция: bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF),
+
+Сообщение: Прямоугольник копируемой области {50, 0, 300, 50} не полностью лежит внутри изображения-источника {0, 0, 250, 50}, функция txTransparentBlt() работать не будет.
+
+#1: TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400], Instance: 0x005092FC (32-bit), Flags: CMdRe0, Thread: 0x2F14 (Main), GetLastError(): 13 (Недопустимые данные). 
+From: c:\codeblocks\codeblocks\mingw\include\txlib.h:13771 bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF).
+
+--------------------------------------------------
+Стек вызовов:
+
+
+
+--------------------------------------------------
+Стек вызовов TX:
+
+# 0 in bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF) at c:\codeblocks\codeblocks\mingw\include\txlib.h:13771:
+
+  13769:         {
+  13770: $       SetLastError (ERROR_INVALID_DATA);
+=>13771: $       TX_ERROR ("Прямоугольник копируемой области {%g, %g, %g, %g} не полностью лежит внутри изображения-источника {%d, %d, %d, %d}, "
+  13772:                   "функция txTransparentBlt() работать не будет.", xSource, ySource, xSource + width, ySource + height, 0, 0, (int) size.x, (int) size.y);
+  13773:         }
+
+# 1 in void Vrag1::draw() at C:\Шлёнкин Матвей\Platformo\Platformo\main.cpp:69:
+
+     67: void draw()
+     68:      {
+=>   69:      txTransparentBlt(txDC(),x,y,w,h,image,50*n_cadr,0,TX_WHITE);
+     70: 
+     71:      }
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\codeblocks\codeblocks\mingw\include\txlib.h
+Compiled:	Apr 17 2025 10:11:21, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Apr 17 2025 10:14:04
+
+Run file:	C:\Шлёнкин Матвей\Platformo\Platformo\bin\Debug\Platformo.exe
+Directory:	C:\Шлёнкин Матвей\Platformo\Platformo
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\2023\Downloads\files-for-Platformo-main\Platformo\Platformo\bin\Debug\Platformo.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x0044D7FB. Попытка прочесть данные по адресу 0x007B1000 в модуле C:\Users\2023\Downloads\files-for-Platformo-main\Platformo\Platformo\bin\Debug\Platformo.exe. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400], Instance: 0x005092FC (32-bit), Flags: CMdRe0, Thread: 0x16B0 (Main), GetLastError(): 87 (Параметр задан неверно). 
+
+--------------------------------------------------
+Стек вызовов:
+
+
+
+--------------------------------------------------
+Стек вызовов TX:
+
+# 0 in void Platforma::draw() at C:\Users\2023\Downloads\files-for-Platformo-main\Platformo\Platformo\main.cpp:21:
+
+     19: void draw()
+     20:      {
+=>   21:      Win32::TransparentBlt(txDC(),x,y,w_screen,h_screen,image,0,0,w,h,TX_WHITE);
+     22: 
+     23:      }
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\codeblocks\codeblocks\mingw\include\txlib.h
+Compiled:	Apr 24 2025 09:12:00, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Apr 24 2025 09:12:28
+
+Run file:	C:\Users\2023\Downloads\files-for-Platformo-main\Platformo\Platformo\bin\Debug\Platformo.exe
+Directory:	C:\Users\2023\Downloads\files-for-Platformo-main\Platformo\Platformo
 
 --------------------------------------------------
 
 --------------------------------------------------
 TXLib соболезнует...
 
-Программа: C:\Шлёнкин Матвей\Platformo\bin\Debug\Platformo.exe, файл: c:\codeblocks\codeblocks\mingw\include\txlib.h, строка: 13751, функция: bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF),
+Программа: C:\Users\2023\Downloads\files-for-Platformo-main\Platformo\Platformo\bin\Debug\Platformo.exe,
 
-Сообщение: Параметр "sourceImage" неверен. Возможно, этот холст не создан, или уже уничтожен, или не загрузилась картинка.
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
 
-#1: TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400], Instance: 0x005072FC (32-bit), Flags: CMdRe0, Thread: 0x2274 (Main), GetLastError(): 13 (Недопустимые данные). 
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x0044D7FB. Попытка прочесть данные по адресу 0x007B1000 в модуле C:\Users\2023\Downloads\files-for-Platformo-main\Platformo\Platformo\bin\Debug\Platformo.exe. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400], Instance: 0x005092FC (32-bit), Flags: CMdRe0, Thread: 0x16B0 (Main), GetLastError(): 87 (Параметр задан неверно). 
 
 --------------------------------------------------
 Стек вызовов:
@@ -66,21 +1085,13 @@ TXLib соболезнует...
 --------------------------------------------------
 Стек вызовов TX:
 
-# 0 in bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF) at c:\codeblocks\codeblocks\mingw\include\txlib.h:13751:
+# 0 in void Platforma::draw() at C:\Users\2023\Downloads\files-for-Platformo-main\Platformo\Platformo\main.cpp:21:
 
-  13749: 
-  13750: $1  if (_TX_HDC_FAILED (destImage))   return false;
-=>13751: $   if (_TX_HDC_FAILED (sourceImage)) return false;
-  13752: 
-  13753:     // Это автоматическое определение размеров картинки (точнее, HDC источника - source) с помощью txGetExtent().
-
-# 1 in void Mario::draw() at C:\Шлёнкин Матвей\Gravitatsia\main.cpp:16:
-
-     14: void draw()
-     15:      {
-=>   16:      txTransparentBlt(txDC(),x,y,w,h,image,0,0,TX_WHITE);
-     17: 
-     18:      }
+     19: void draw()
+     20:      {
+=>   21:      Win32::TransparentBlt(txDC(),x,y,w_screen,h_screen,image,0,0,w,h,TX_WHITE);
+     22: 
+     23:      }
 
 --------------------------------------------------
 Developed with:
@@ -91,22 +1102,72 @@ Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
 See license on: http://txlib.ru
 
 TXLib file:	c:\codeblocks\codeblocks\mingw\include\txlib.h
-Compiled:	Jan 23 2025 09:54:37, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
-Started:	Jan 23 2025 09:55:00
+Compiled:	Apr 24 2025 09:12:00, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Apr 24 2025 09:12:28
 
-Run file:	C:\Шлёнкин Матвей\Platformo\bin\Debug\Platformo.exe
-Directory:	C:\Шлёнкин Матвей\Platformo
+Run file:	C:\Users\2023\Downloads\files-for-Platformo-main\Platformo\Platformo\bin\Debug\Platformo.exe
+Directory:	C:\Users\2023\Downloads\files-for-Platformo-main\Platformo\Platformo
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\2023\Downloads\files-for-Platformo-main\Platformo\Platformo\bin\Debug\Platformo.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x0044DA20. Попытка прочесть данные по адресу 0x007B0000 в модуле C:\Users\2023\Downloads\files-for-Platformo-main\Platformo\Platformo\bin\Debug\Platformo.exe. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400], Instance: 0x005092FC (32-bit), Flags: CMdRe0, Thread: 0x135C (Main), GetLastError(): 87 (Параметр задан неверно). 
+
+--------------------------------------------------
+Стек вызовов:
+
+
+
+--------------------------------------------------
+Стек вызовов TX:
+
+# 0 in void Platforma::draw() at C:\Users\2023\Downloads\files-for-Platformo-main\Platformo\Platformo\main.cpp:21:
+
+     19: void draw()
+     20:      {
+=>   21:      Win32::TransparentBlt(txDC(),x,y,w_screen,h_screen,image,0,0,w,h,TX_WHITE);
+     22: 
+     23:      }
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\codeblocks\codeblocks\mingw\include\txlib.h
+Compiled:	Apr 24 2025 09:27:56, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Apr 24 2025 09:28:21
+
+Run file:	C:\Users\2023\Downloads\files-for-Platformo-main\Platformo\Platformo\bin\Debug\Platformo.exe
+Directory:	C:\Users\2023\Downloads\files-for-Platformo-main\Platformo\Platformo
 
 --------------------------------------------------
 
 --------------------------------------------------
 TXLib соболезнует...
 
-Программа: C:\Шлёнкин Матвей\Platformo\bin\Debug\Platformo.exe, файл: c:\codeblocks\codeblocks\mingw\include\txlib.h, строка: 13751, функция: bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF),
+Программа: C:\Users\2023\Downloads\files-for-Platformo-main\Platformo\Platformo\bin\Debug\Platformo.exe,
 
-Сообщение: Параметр "sourceImage" неверен. Возможно, этот холст не создан, или уже уничтожен, или не загрузилась картинка.
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
 
-#1: TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400], Instance: 0x005072FC (32-bit), Flags: CMdRe0, Thread: 0x25C8 (Main), GetLastError(): 13 (Недопустимые данные). 
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x0044DA20. Попытка прочесть данные по адресу 0x007B0000 в модуле C:\Users\2023\Downloads\files-for-Platformo-main\Platformo\Platformo\bin\Debug\Platformo.exe. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400], Instance: 0x005092FC (32-bit), Flags: CMdRe0, Thread: 0x135C (Main), GetLastError(): 87 (Параметр задан неверно). 
 
 --------------------------------------------------
 Стек вызовов:
@@ -116,21 +1177,13 @@ TXLib соболезнует...
 --------------------------------------------------
 Стек вызовов TX:
 
-# 0 in bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF) at c:\codeblocks\codeblocks\mingw\include\txlib.h:13751:
+# 0 in void Platforma::draw() at C:\Users\2023\Downloads\files-for-Platformo-main\Platformo\Platformo\main.cpp:21:
 
-  13749: 
-  13750: $1  if (_TX_HDC_FAILED (destImage))   return false;
-=>13751: $   if (_TX_HDC_FAILED (sourceImage)) return false;
-  13752: 
-  13753:     // Это автоматическое определение размеров картинки (точнее, HDC источника - source) с помощью txGetExtent().
-
-# 1 in void Mario::draw() at C:\Шлёнкин Матвей\Gravitatsia\main.cpp:16:
-
-     14: void draw()
-     15:      {
-=>   16:      txTransparentBlt(txDC(),x,y,w,h,image,0,0,TX_WHITE);
-     17: 
-     18:      }
+     19: void draw()
+     20:      {
+=>   21:      Win32::TransparentBlt(txDC(),x,y,w_screen,h_screen,image,0,0,w,h,TX_WHITE);
+     22: 
+     23:      }
 
 --------------------------------------------------
 Developed with:
@@ -141,22 +1194,72 @@ Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
 See license on: http://txlib.ru
 
 TXLib file:	c:\codeblocks\codeblocks\mingw\include\txlib.h
-Compiled:	Jan 23 2025 09:54:37, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
-Started:	Jan 23 2025 09:58:27
+Compiled:	Apr 24 2025 09:27:56, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Apr 24 2025 09:28:21
 
-Run file:	C:\Шлёнкин Матвей\Platformo\bin\Debug\Platformo.exe
-Directory:	C:\Шлёнкин Матвей\Platformo
+Run file:	C:\Users\2023\Downloads\files-for-Platformo-main\Platformo\Platformo\bin\Debug\Platformo.exe
+Directory:	C:\Users\2023\Downloads\files-for-Platformo-main\Platformo\Platformo
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\2023\Downloads\files-for-Platformo-main\Platformo\Platformo\bin\Debug\Platformo.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x0044DCCB. Попытка прочесть данные по адресу 0x007B1000 в модуле C:\Users\2023\Downloads\files-for-Platformo-main\Platformo\Platformo\bin\Debug\Platformo.exe. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400], Instance: 0x005092FC (32-bit), Flags: CMdRe0, Thread: 0x41C (Main), GetLastError(): 87 (Параметр задан неверно). 
+
+--------------------------------------------------
+Стек вызовов:
+
+
+
+--------------------------------------------------
+Стек вызовов TX:
+
+# 0 in void Platforma::draw() at C:\Users\2023\Downloads\files-for-Platformo-main\Platformo\Platformo\main.cpp:21:
+
+     19: void draw()
+     20:      {
+=>   21:      Win32::TransparentBlt(txDC(),x,y,w_screen,h_screen,image,0,0,w,h,TX_WHITE);
+     22: 
+     23:      }
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\codeblocks\codeblocks\mingw\include\txlib.h
+Compiled:	Apr 24 2025 09:31:03, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Apr 24 2025 09:31:29
+
+Run file:	C:\Users\2023\Downloads\files-for-Platformo-main\Platformo\Platformo\bin\Debug\Platformo.exe
+Directory:	C:\Users\2023\Downloads\files-for-Platformo-main\Platformo\Platformo
 
 --------------------------------------------------
 
 --------------------------------------------------
 TXLib соболезнует...
 
-Программа: C:\Шлёнкин Матвей\Platformo\bin\Debug\Platformo.exe, файл: c:\codeblocks\codeblocks\mingw\include\txlib.h, строка: 13751, функция: bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF),
+Программа: C:\Users\2023\Downloads\files-for-Platformo-main\Platformo\Platformo\bin\Debug\Platformo.exe,
 
-Сообщение: Параметр "sourceImage" неверен. Возможно, этот холст не создан, или уже уничтожен, или не загрузилась картинка.
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
 
-#1: TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400], Instance: 0x005072FC (32-bit), Flags: CMdRe0, Thread: 0x170C (Main), GetLastError(): 13 (Недопустимые данные). 
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x0044DCCB. Попытка прочесть данные по адресу 0x007B1000 в модуле C:\Users\2023\Downloads\files-for-Platformo-main\Platformo\Platformo\bin\Debug\Platformo.exe. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400], Instance: 0x005092FC (32-bit), Flags: CMdRe0, Thread: 0x41C (Main), GetLastError(): 87 (Параметр задан неверно). 
 
 --------------------------------------------------
 Стек вызовов:
@@ -166,21 +1269,13 @@ TXLib соболезнует...
 --------------------------------------------------
 Стек вызовов TX:
 
-# 0 in bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF) at c:\codeblocks\codeblocks\mingw\include\txlib.h:13751:
+# 0 in void Platforma::draw() at C:\Users\2023\Downloads\files-for-Platformo-main\Platformo\Platformo\main.cpp:21:
 
-  13749: 
-  13750: $1  if (_TX_HDC_FAILED (destImage))   return false;
-=>13751: $   if (_TX_HDC_FAILED (sourceImage)) return false;
-  13752: 
-  13753:     // Это автоматическое определение размеров картинки (точнее, HDC источника - source) с помощью txGetExtent().
-
-# 1 in void Player::draw() at C:\Шлёнкин Матвей\Platformo\main.cpp:52:
-
-     50: void draw()
-     51:      {
-=>   52:      txTransparentBlt(txDC(),x,y,200,140,image,200*n_cadr,0,RGB(12,184,220));
-     53: 
-     54:      }
+     19: void draw()
+     20:      {
+=>   21:      Win32::TransparentBlt(txDC(),x,y,w_screen,h_screen,image,0,0,w,h,TX_WHITE);
+     22: 
+     23:      }
 
 --------------------------------------------------
 Developed with:
@@ -191,22 +1286,72 @@ Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
 See license on: http://txlib.ru
 
 TXLib file:	c:\codeblocks\codeblocks\mingw\include\txlib.h
-Compiled:	Feb  6 2025 09:33:18, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
-Started:	Feb 06 2025 09:33:43
+Compiled:	Apr 24 2025 09:31:03, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Apr 24 2025 09:31:29
 
-Run file:	C:\Шлёнкин Матвей\Platformo\bin\Debug\Platformo.exe
-Directory:	C:\Шлёнкин Матвей\Platformo
+Run file:	C:\Users\2023\Downloads\files-for-Platformo-main\Platformo\Platformo\bin\Debug\Platformo.exe
+Directory:	C:\Users\2023\Downloads\files-for-Platformo-main\Platformo\Platformo
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\2023\Downloads\files-for-Platformo-main\Platformo\Platformo\bin\Debug\Platformo.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x0044DD00. Попытка прочесть данные по адресу 0x007C1008 в модуле C:\Users\2023\Downloads\files-for-Platformo-main\Platformo\Platformo\bin\Debug\Platformo.exe. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400], Instance: 0x005092FC (32-bit), Flags: CMdRe0, Thread: 0x674 (Main), GetLastError(): 87 (Параметр задан неверно). 
+
+--------------------------------------------------
+Стек вызовов:
+
+
+
+--------------------------------------------------
+Стек вызовов TX:
+
+# 0 in void Platforma::draw() at C:\Users\2023\Downloads\files-for-Platformo-main\Platformo\Platformo\main.cpp:21:
+
+     19: void draw()
+     20:      {
+=>   21:      Win32::TransparentBlt(txDC(),x,y,w_screen,h_screen,image,0,0,w,h,TX_WHITE);
+     22: 
+     23:      }
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\codeblocks\codeblocks\mingw\include\txlib.h
+Compiled:	Apr 24 2025 09:37:27, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Apr 24 2025 09:37:52
+
+Run file:	C:\Users\2023\Downloads\files-for-Platformo-main\Platformo\Platformo\bin\Debug\Platformo.exe
+Directory:	C:\Users\2023\Downloads\files-for-Platformo-main\Platformo\Platformo
 
 --------------------------------------------------
 
 --------------------------------------------------
 TXLib соболезнует...
 
-Программа: C:\Шлёнкин Матвей\Platformo\bin\Debug\Platformo.exe, файл: c:\codeblocks\codeblocks\mingw\include\txlib.h, строка: 10937, функция: bool {anonymous}::TX::_txBuffer_Delete(HDC__**),
+Программа: C:\Users\2023\Downloads\files-for-Platformo-main\Platformo\Platformo\bin\Debug\Platformo.exe,
 
-Сообщение: Параметр "*dc" неверен. Возможно, этот холст не создан, или уже уничтожен, или не загрузилась картинка.
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
 
-#1: TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400], Instance: 0x005072FC (32-bit), Flags: CMdRe0, Thread: 0x2380 (Main), GetLastError(): 13 (Недопустимые данные). 
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x0044DD00. Попытка прочесть данные по адресу 0x007C1008 в модуле C:\Users\2023\Downloads\files-for-Platformo-main\Platformo\Platformo\bin\Debug\Platformo.exe. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400], Instance: 0x005092FC (32-bit), Flags: CMdRe0, Thread: 0x674 (Main), GetLastError(): 87 (Параметр задан неверно). 
 
 --------------------------------------------------
 Стек вызовов:
@@ -216,37 +1361,13 @@ TXLib соболезнует...
 --------------------------------------------------
 Стек вызовов TX:
 
-# 0 in bool {anonymous}::TX::_txBuffer_Delete(HDC__**) at c:\codeblocks\codeblocks\mingw\include\txlib.h:10937:
+# 0 in void Platforma::draw() at C:\Users\2023\Downloads\files-for-Platformo-main\Platformo\Platformo\main.cpp:21:
 
-  10935: $1  if (_TX_ARGUMENT_FAILED (dc)) return false;
-  10936: $   if (                   !*dc)  return false;
-=>10937: $   if (_TX_HDC_FAILED     (*dc)) return false;
-  10938: 
-  10939: $   if (!Win32::GetObjectType (Win32::GetCurrentObject (*dc, OBJ_BITMAP))) return false;
-
-# 1 in bool {anonymous}::TX::txDeleteDC(HDC__**) at c:\codeblocks\codeblocks\mingw\include\txlib.h:13691:
-
-  13689: 
-  13690: $   HDC  dc = *pdc;
-=>13691: $   bool ok = _txBuffer_Delete (pdc);
-  13692: $   if (!ok) return false;
-  13693: 
-
-# 2 in bool {anonymous}::TX::txDeleteDC(HDC) at c:\codeblocks\codeblocks\mingw\include\txlib.h:13713:
-
-  13711: bool txDeleteDC (HDC dc)
-  13712:     {
-=>13713: $1  return txDeleteDC (&dc);
-  13714:     }
-  13715: 
-
-# 3 in int main() at C:\Шлёнкин Матвей\Platformo\main.cpp:96:
-
-     94: txDeleteDC(platforma1.image);
-     95: txDeleteDC(player1.image);
-=>   96: txDeleteDC(player1.image_R);
-     97: txDeleteDC(player1.image_L);
-     98: txDeleteDC(fon);
+     19: void draw()
+     20:      {
+=>   21:      Win32::TransparentBlt(txDC(),x,y,w_screen,h_screen,image,0,0,w,h,TX_WHITE);
+     22: 
+     23:      }
 
 --------------------------------------------------
 Developed with:
@@ -257,142 +1378,10 @@ Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
 See license on: http://txlib.ru
 
 TXLib file:	c:\codeblocks\codeblocks\mingw\include\txlib.h
-Compiled:	Feb  6 2025 09:43:50, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
-Started:	Feb 06 2025 09:44:57
+Compiled:	Apr 24 2025 09:37:27, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Apr 24 2025 09:37:53
 
-Run file:	C:\Шлёнкин Матвей\Platformo\bin\Debug\Platformo.exe
-Directory:	C:\Шлёнкин Матвей\Platformo
-
---------------------------------------------------
-
---------------------------------------------------
-TXLib соболезнует...
-
-Программа: C:\Шлёнкин Матвей\Platformo\bin\Debug\Platformo.exe, файл: c:\codeblocks\codeblocks\mingw\include\txlib.h, строка: 10937, функция: bool {anonymous}::TX::_txBuffer_Delete(HDC__**),
-
-Сообщение: Параметр "*dc" неверен. Возможно, этот холст не создан, или уже уничтожен, или не загрузилась картинка.
-
-#1: TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400], Instance: 0x005072FC (32-bit), Flags: CMdRe0, Thread: 0x1074 (Main), GetLastError(): 13 (Недопустимые данные). 
-
---------------------------------------------------
-Стек вызовов:
-
-
-
---------------------------------------------------
-Стек вызовов TX:
-
-# 0 in bool {anonymous}::TX::_txBuffer_Delete(HDC__**) at c:\codeblocks\codeblocks\mingw\include\txlib.h:10937:
-
-  10935: $1  if (_TX_ARGUMENT_FAILED (dc)) return false;
-  10936: $   if (                   !*dc)  return false;
-=>10937: $   if (_TX_HDC_FAILED     (*dc)) return false;
-  10938: 
-  10939: $   if (!Win32::GetObjectType (Win32::GetCurrentObject (*dc, OBJ_BITMAP))) return false;
-
-# 1 in bool {anonymous}::TX::txDeleteDC(HDC__**) at c:\codeblocks\codeblocks\mingw\include\txlib.h:13691:
-
-  13689: 
-  13690: $   HDC  dc = *pdc;
-=>13691: $   bool ok = _txBuffer_Delete (pdc);
-  13692: $   if (!ok) return false;
-  13693: 
-
-# 2 in bool {anonymous}::TX::txDeleteDC(HDC) at c:\codeblocks\codeblocks\mingw\include\txlib.h:13713:
-
-  13711: bool txDeleteDC (HDC dc)
-  13712:     {
-=>13713: $1  return txDeleteDC (&dc);
-  13714:     }
-  13715: 
-
-# 3 in int main() at C:\Шлёнкин Матвей\Platformo\main.cpp:96:
-
-     94: txDeleteDC(platforma1.image);
-     95: txDeleteDC(player1.image);
-=>   96: txDeleteDC(player1.image_R);
-     97: txDeleteDC(player1.image_L);
-     98: txDeleteDC(fon);
-
---------------------------------------------------
-Developed with:
-
-The Dumb Artist Library (TX Library)
-TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400]
-Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
-See license on: http://txlib.ru
-
-TXLib file:	c:\codeblocks\codeblocks\mingw\include\txlib.h
-Compiled:	Feb  6 2025 09:53:31, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
-Started:	Feb 06 2025 09:54:02
-
-Run file:	C:\Шлёнкин Матвей\Platformo\bin\Debug\Platformo.exe
-Directory:	C:\Шлёнкин Матвей\Platformo
-
---------------------------------------------------
-
---------------------------------------------------
-TXLib соболезнует...
-
-Программа: C:\Шлёнкин Матвей\Platformo\bin\Debug\Platformo.exe, файл: c:\codeblocks\codeblocks\mingw\include\txlib.h, строка: 10937, функция: bool {anonymous}::TX::_txBuffer_Delete(HDC__**),
-
-Сообщение: Параметр "*dc" неверен. Возможно, этот холст не создан, или уже уничтожен, или не загрузилась картинка.
-
-#1: TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400], Instance: 0x005072FC (32-bit), Flags: CMdRe0, Thread: 0xE3C (Main), GetLastError(): 13 (Недопустимые данные). 
-
---------------------------------------------------
-Стек вызовов:
-
-
-
---------------------------------------------------
-Стек вызовов TX:
-
-# 0 in bool {anonymous}::TX::_txBuffer_Delete(HDC__**) at c:\codeblocks\codeblocks\mingw\include\txlib.h:10937:
-
-  10935: $1  if (_TX_ARGUMENT_FAILED (dc)) return false;
-  10936: $   if (                   !*dc)  return false;
-=>10937: $   if (_TX_HDC_FAILED     (*dc)) return false;
-  10938: 
-  10939: $   if (!Win32::GetObjectType (Win32::GetCurrentObject (*dc, OBJ_BITMAP))) return false;
-
-# 1 in bool {anonymous}::TX::txDeleteDC(HDC__**) at c:\codeblocks\codeblocks\mingw\include\txlib.h:13691:
-
-  13689: 
-  13690: $   HDC  dc = *pdc;
-=>13691: $   bool ok = _txBuffer_Delete (pdc);
-  13692: $   if (!ok) return false;
-  13693: 
-
-# 2 in bool {anonymous}::TX::txDeleteDC(HDC) at c:\codeblocks\codeblocks\mingw\include\txlib.h:13713:
-
-  13711: bool txDeleteDC (HDC dc)
-  13712:     {
-=>13713: $1  return txDeleteDC (&dc);
-  13714:     }
-  13715: 
-
-# 3 in int main() at C:\Шлёнкин Матвей\Platformo\main.cpp:103:
-
-    101: txDeleteDC(platforma1.image);
-    102: txDeleteDC(player1.image_R);
-=>  103: txDeleteDC(player1.image_R);
-    104: txDeleteDC(player1.image_L);
-    105: txDeleteDC(fon);
-
---------------------------------------------------
-Developed with:
-
-The Dumb Artist Library (TX Library)
-TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400]
-Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
-See license on: http://txlib.ru
-
-TXLib file:	c:\codeblocks\codeblocks\mingw\include\txlib.h
-Compiled:	Feb  6 2025 10:00:51, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
-Started:	Feb 06 2025 10:01:15
-
-Run file:	C:\Шлёнкин Матвей\Platformo\bin\Debug\Platformo.exe
-Directory:	C:\Шлёнкин Матвей\Platformo
+Run file:	C:\Users\2023\Downloads\files-for-Platformo-main\Platformo\Platformo\bin\Debug\Platformo.exe
+Directory:	C:\Users\2023\Downloads\files-for-Platformo-main\Platformo\Platformo
 
 --------------------------------------------------
